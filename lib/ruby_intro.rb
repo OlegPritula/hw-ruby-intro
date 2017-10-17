@@ -14,6 +14,21 @@ end
 
 def sum_to_n? arr, n
   # YOUR CODE HERE
+  if  arr.length >= 2  # проверка на величину array
+    key = 0 
+    while arr[key] < arr[-1]
+      elem1 = n-arr[key]
+        if arr.include?(elem1)
+        #return true
+        break
+       else
+        key = key + 1
+       end
+    end
+  else
+    
+  end  
+  return false  
 end
 
 # Part 2
