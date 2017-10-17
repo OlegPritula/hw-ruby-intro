@@ -46,7 +46,17 @@ def binary_multiple_of_4? s
 Определите метод `binary_multiple_of_4? (S)`, который берет строку и возвращает значение true, если строка представляет двоичное число, которое кратно 4. ПРИМЕЧАНИЕ: убедитесь, что он возвращает false, если строка не является действительным двоичным числом!
 =end
   # YOUR CODE HERE Run associated tests via:  `$ rspec -e '#binary_multiple_of_4?' spec/part2_spec.rb` You can check your progress on the all the above by running `$ rspec spec/part2_spec.rb`.
-end
+  result = s[/(^[01]{1,})/]
+    if result == nil
+      return false
+    end
+    a = s
+    b = (a >> 2).to_s(2)
+    if  (b << 2) == a
+      return true
+    end
+    return false
+  end
 
 # Part 3
 
