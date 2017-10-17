@@ -4,10 +4,12 @@
 
 def sum arr
   # YOUR CODE HERE
+  arr.inject(0){ |total, elem| total + elem }
 end
 
 def max_2_sum arr
   # YOUR CODE HERE
+  arr.sort.last(2).inject(0) { |total, elem| total + elem }
 end
 
 def sum_to_n? arr, n
