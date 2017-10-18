@@ -14,8 +14,10 @@ end
 
 def sum_to_n? arr, n
   # YOUR CODE HERE Run associated tests via:  `$ rspec spec/part1_spec.rb:42`
+  #Сдесть нужно проверять сумму двох любих элементов масива, я ее не выжу...
   if  arr.length >= 2
-    index = 0 
+=begin
+    index = 0
     while arr[index] < arr.index(arr.last)
       elem1 = n-arr[index]
       if arr.include?(elem1)
@@ -25,6 +27,35 @@ def sum_to_n? arr, n
         index += 1
       end
     end
+=end
+
+  # Это мой код, простой перебор
+=begin
+Вот так работает для масива 4 элементов[1,2,3,4]
+
+    1+2
+    1+3
+    1+4
+    2+3
+    3+4
+=end
+
+
+    i=0
+    while i<arr.length-1 do
+      j=i+1
+      a = arr[i]
+      while j<arr.length do
+        b=arr[j]
+        if  a+b == n
+          return true
+        end
+        j=j+1
+      end
+      i=i+1
+    end
+
+
   end  
   return false  
 end
@@ -38,7 +69,10 @@ end
 
 def starts_with_consonant? s
   # YOUR CODE HERE Run associated tests via:  `$ rspec -e '#starts_with_consonant?' spec/part2_spec.rb`
- (/\A[^AEIOUaeiou\s\d]/=~s)? true:false
+ #(/\A[^AEIOUaeiou\s\d]/=~s)? true:false
+  #Поставил свою регулярку. все сработало
+  # \W - исключить спецсимволи
+  (/(^[^ouaeiOUAEI\W])/=~s)? true:false
 end
 
 def binary_multiple_of_4? s
@@ -46,16 +80,31 @@ def binary_multiple_of_4? s
 Определите метод `binary_multiple_of_4? (S)`, который берет строку и возвращает значение true, если строка представляет двоичное число, которое кратно 4. ПРИМЕЧАНИЕ: убедитесь, что он возвращает false, если строка не является действительным двоичным числом!
 =end
   # YOUR CODE HERE Run associated tests via:  `$ rspec -e '#binary_multiple_of_4?' spec/part2_spec.rb` You can check your progress on the all the above by running `$ rspec spec/part2_spec.rb`.
-  result = s[/(^[01]{1,})/]
+
+  #result = s[/(^[01]{1,})/]
+  #Можно и так
+  result = s[/(^[01]+)/]
     if result == nil
       return false
     end
+
+  # Что это
+=begin
     a = s
     b = (a >> 2).to_s(2)
     if  (b << 2) == a
       return true
     end
-    return false
+=end
+
+  # я б сделал так
+   if result.to_i(2)%4 == 0
+     return true
+   end
+
+
+  return false
+
   end
 
 # Part 3
@@ -96,8 +145,10 @@ class BookInStock
   
   attr_accessor :isbn, :price #Setters&Getters
 
-  def price_as_string (price)
-    "$%.2f" % price
+  # def price_as_string (price) - Зачем параметр передавать, это сетер
+  def price_as_string
+  #  "$%.2f" % price
+    sprintf("$%.2f",@price)
   end
   
 end
