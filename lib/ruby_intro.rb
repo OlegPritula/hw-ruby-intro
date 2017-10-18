@@ -80,4 +80,25 @@ class BookInStock
 «$ 33,80»
 =end
 # YOUR CODE HERE
+
+  def initialize (isbn, price)
+    if isbn.length == 0
+      raise ArgumentError.new("the ISBN number is the empty string")
+    end
+  
+    if price <= 0
+      raise ArgumentError.new("the price is less than or equal to zero")
+    end
+
+    @isbn = isbn
+    @price = price
+  end
+  
+  attr_accessor :isbn, :price #Setters&Getters
+
+  def price_as_string (price)
+    "$%.2f" % price
+  end
+  
 end
+
