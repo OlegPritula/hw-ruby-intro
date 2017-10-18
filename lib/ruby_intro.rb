@@ -15,14 +15,14 @@ end
 def sum_to_n? arr, n
   # YOUR CODE HERE Run associated tests via:  `$ rspec spec/part1_spec.rb:42`
   if  arr.length >= 2
-    key = 0 
-    while arr[key] < arr[-1]
-      elem1 = n-arr[key]
+    index = 0 
+    while arr[index] < arr.index(arr.last)
+      elem1 = n-arr[index]
       if arr.include?(elem1)
         return true
         break
       else
-        key = key + 1
+        index += 1
       end
     end
   end  
